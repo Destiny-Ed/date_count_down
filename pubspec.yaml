@@ -1,8 +1,8 @@
-name: flutter_count_down
+name: date_count_down
 description: This is a flutter countdown package written in dart for flutter developer.
 version: 0.0.1
-author: Destiny Ed<dikeachaeze@gmail.com>
-homepage: https://github.com/Destiny-Ed/flutter_count_down
+# author: Destiny Ed<dikeachaeze@gmail.com>
+homepage: https://github.com/Destiny-Ed/date_count_down
 
 environment:
   sdk: ">=2.7.0 <3.0.0"

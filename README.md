@@ -4,7 +4,7 @@ A new Flutter package that provide already made Count down functionality
 
 ## Usage
 
-[Example] (https://github.com/Destiny-Ed/flutter_count_down/blob/main/example/example.dart)
+[Example] (https://github.com/Destiny-Ed/date_count_down/blob/main/example/example.dart)
 
 To use this package : *add the dependency to your [pubspec.yaml] file
 
@@ -12,14 +12,15 @@ To use this package : *add the dependency to your [pubspec.yaml] file
    dependencies:
         flutter:
             sdk : flutter
-        flutter_count_down:
+        date_count_down:
 ```
 
 ## Add to your dart file
 
 ```dart
     import 'package:flutter/material.dart';
-import 'package:flutter_countDown/flutter_count_down.dart';
+
+import 'package:date_count_down/date_count_down.dart';
 
 void main() {
   runApp(MyApp());

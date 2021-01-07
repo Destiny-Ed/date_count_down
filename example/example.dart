@@ -1,5 +1,6 @@
+
+import 'package:date_count_down/date_count_down.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_count_down/flutter_count_down.dart';
 
 void main() {
   runApp(MyApp());

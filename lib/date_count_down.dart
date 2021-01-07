@@ -1,4 +1,4 @@
-library flutter_count_down;
+library count_down_timer;
 
 class CountDown {
   String timeLeft(
