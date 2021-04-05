@@ -1,5 +1,6 @@
 library count_down_timer;
 
+
 class CountDown {
   String timeLeft(
     DateTime due,
@@ -15,7 +16,11 @@ class CountDown {
     int _minUntil =
         _timeUntilDue.inMinutes - (_daysUntil * 24 * 60) - (_hoursUntil * 60);
     int _secUntil = _timeUntilDue.inSeconds - (_minUntil * 60);
-    String s = _secUntil.toString().substring(_secUntil.toString().length - 2);
+    // String s = _secUntil.toString().substring(_secUntil.toString().length - 2);
+    // //Fixed Invalid Range Value
+    String s = _secUntil.toString().length <= 2
+        ? _secUntil.toString()
+        : _secUntil.toString().substring(_secUntil.toString().length - 2);
 
     if (_daysUntil > 0) {
       //Check whether to return longDateName date name or not
@@ -34,7 +39,7 @@ class CountDown {
             _hoursUntil.toString() +
             " hours " +
             _minUntil.toString() +
-            " months " +
+            " minutes " +
             s.toString() +
             " seconds ";
       }
@@ -62,10 +67,15 @@ class CountDown {
             _minUntil.toString() + " minutes " + s.toString() + " seconds ";
       }
     } else if (_secUntil > 0) {
-      retVal = "Almost there ";
+      if (longDateName == false) {
+        retVal = s.toString() + " s ";
+      } else {
+        retVal = s.toString() + " seconds ";
+      }
     } else {
       retVal = finishedText;
     }
     return retVal;
   }
 }
+
