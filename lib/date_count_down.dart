@@ -1,81 +1,55 @@
 library count_down_timer;
 
+import 'dart:async';
+import 'package:flutter/material.dart';
 
-class CountDown {
-  String timeLeft(
-    DateTime due,
-    String finishedText, {
-    bool longDateName = false,
-  }) {
-    String retVal;
+import 'countdown.dart';
 
-    Duration _timeUntilDue = due.difference(DateTime.now());
+///CountDownText : A simple text widget that display the countdown timer
+///based on the dateTime given e.g DateTime.utc(2050)
+class CountDownText extends StatefulWidget {
+  CountDownText(
+      {Key? key,
+      required this.due,
+      required this.finishedText,
+      this.longDateName = false,
+      this.style,
+      this.showLabel = false})
+      : super(key: key);
 
-    int _daysUntil = _timeUntilDue.inDays;
-    int _hoursUntil = _timeUntilDue.inHours - (_daysUntil * 24);
-    int _minUntil =
-        _timeUntilDue.inMinutes - (_daysUntil * 24 * 60) - (_hoursUntil * 60);
-    int _secUntil = _timeUntilDue.inSeconds - (_minUntil * 60);
-    // String s = _secUntil.toString().substring(_secUntil.toString().length - 2);
-    // //Fixed Invalid Range Value
-    String s = _secUntil.toString().length <= 2
-        ? _secUntil.toString()
-        : _secUntil.toString().substring(_secUntil.toString().length - 2);
+  final DateTime? due;
+  final String? finishedText;
+  final bool? longDateName;
+  final bool? showLabel;
+  final TextStyle? style;
 
-    if (_daysUntil > 0) {
-      //Check whether to return longDateName date name or not
-      if (longDateName == false) {
-        retVal = _daysUntil.toString() +
-            " d " +
-            _hoursUntil.toString() +
-            " h " +
-            _minUntil.toString() +
-            " m " +
-            s.toString() +
-            " s ";
-      } else {
-        retVal = _daysUntil.toString() +
-            " days " +
-            _hoursUntil.toString() +
-            " hours " +
-            _minUntil.toString() +
-            " minutes " +
-            s.toString() +
-            " seconds ";
-      }
-    } else if (_hoursUntil > 0) {
-      if (longDateName == false) {
-        retVal = _hoursUntil.toString() +
-            " h " +
-            _minUntil.toString() +
-            " m " +
-            s.toString() +
-            " s ";
-      } else {
-        retVal = _hoursUntil.toString() +
-            " hours " +
-            _minUntil.toString() +
-            " minutes " +
-            s.toString() +
-            " seconds ";
-      }
-    } else if (_minUntil > 0) {
-      if (longDateName == false) {
-        retVal = _minUntil.toString() + " m " + s.toString() + " s ";
-      } else {
-        retVal =
-            _minUntil.toString() + " minutes " + s.toString() + " seconds ";
-      }
-    } else if (_secUntil > 0) {
-      if (longDateName == false) {
-        retVal = s.toString() + " s ";
-      } else {
-        retVal = s.toString() + " seconds ";
-      }
-    } else {
-      retVal = finishedText;
-    }
-    return retVal;
-  }
+  @override
+  _CountDownTextState createState() => _CountDownTextState();
 }
 
+class _CountDownTextState extends State<CountDownText> {
+  Timer? timer;
+
+  @override
+  void initState() {
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      setState(() {});
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    timer!.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      CountDown().timeLeft(widget.due!, widget.finishedText!,
+          longDateName: widget.longDateName, showLabel: widget.showLabel),
+      style: widget.style,
+    );
+  }
+}

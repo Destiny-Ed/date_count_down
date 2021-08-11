@@ -18,30 +18,29 @@ To use this package : *add the dependency to your [pubspec.yaml] file
 ## Add to your dart file
 
 ```dart
-    import 'package:flutter/material.dart';
-
 import 'package:date_count_down/date_count_down.dart';
+import 'package:flutter/material.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Count Down',
+      title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Count Down'),
+      home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -50,17 +49,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String countDown = 'Loading';
-
   @override
   Widget build(BuildContext context) {
-    //List of Date to countDown
-    List<DateTime> s = [
-      DateTime.utc(2022),
-      DateTime.utc(2021),
-      DateTime(2021, 2, 7)
-    ];
-
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -70,27 +60,17 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'You have pushed the button this many times:',
+              'Countdown Timer:',
             ),
-            Expanded(
-              child: ListView(
-                children: List.generate(3, (index) {
-                  countDown = CountDown()
-                      .timeLeft(s[index], 'Time Ended', longDateName: true);
-                  return Text(
-                    countDown,
-                    style: Theme.of(context).textTheme.headline4,
-                  );
-                }),
-              ),
+            CountDownText(
+              due: DateTime.utc(2050),
+              finishedText: "Done",
+              showLabel: true,
+              longDateName: true,
+              style: TextStyle(color: Colors.blue),
             )
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
       ),
     );
   }
@@ -98,13 +78,16 @@ class _MyHomePageState extends State<MyHomePage> {
 
 ```
 
-## Getting Started
+## Follow me
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+[Github] (https://github.com/Destiny-Ed)
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+[Twitter] (https://twitter.com/DestinyEd8)
+  
+[Facebook] (https://web.facebook.com/destiny.dike...)
+
+[Linkedin] (linkedin.com/in/destiny-ed-719815148)
+
+
+
+

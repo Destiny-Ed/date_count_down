@@ -6,3 +6,9 @@
 
 * Fixed Not In Range Error when countdown is in seconds
 * Replaced Almost there Text with seconds
+
+## [1.0.2] - Aug 11 2021
+
+* Change timer text color
+* Realtime count down
+* You can now remove and add day, hour and minutes label
