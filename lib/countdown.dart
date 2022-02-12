@@ -1,7 +1,16 @@
 class CountDown {
-  String timeLeft(DateTime due, String finishedText,
+  String timeLeft(DateTime due,
+      String finishedText,
+      String daysTextLong,
+      String hoursTextLong,
+      String minutesTextLong,
+      String secondsTextLong,
+      String daysTextShort,
+      String hoursTextShort,
+      String minutesTextShort,
+      String secondsTextShort,
       {bool? longDateName, bool? showLabel}) {
-    String retVal;
+    String retVal = "";
 
     Duration _timeUntilDue = due.difference(DateTime.now());
 
@@ -16,83 +25,50 @@ class CountDown {
         ? _secUntil.toString()
         : _secUntil.toString().substring(_secUntil.toString().length - 2);
 
-    if (_daysUntil > 0) {
-      //Check whether to return longDateName date name or not
-      if (showLabel == false) {
-        retVal = _daysUntil.toString() +
-            " : " +
-            _hoursUntil.toString() +
-            " : " +
-            _minUntil.toString() +
-            " : " +
-            s.toString();
+    //Check whether to return longDateName date name or not
+    if (showLabel == false){
+      if (_daysUntil > 0) {
+        retVal += _daysUntil.toString() + " : ";
+      }
+      if (_hoursUntil > 0) {
+        retVal += _hoursUntil.toString() + " : ";
+      }
+      if (_minUntil > 0) {
+        retVal += _minUntil.toString() + " : ";
+      }
+      if (_secUntil > 0) {
+        retVal += s;
+      }
+    }else {
+      if (longDateName == false) {
+        if (_daysUntil > 0) {
+          retVal += _daysUntil.toString() + daysTextShort;
+        }
+        if (_hoursUntil > 0) {
+          retVal += _hoursUntil.toString() + hoursTextShort;
+        }
+        if (_minUntil > 0) {
+          retVal += _minUntil.toString() + minutesTextShort;
+        }
+        if (_secUntil > 0) {
+          retVal += s + secondsTextShort;
+        }
       } else {
-        if (longDateName == false) {
-          retVal = _daysUntil.toString() +
-              " d " +
-              _hoursUntil.toString() +
-              " h " +
-              _minUntil.toString() +
-              " m " +
-              s.toString() +
-              " s ";
-        } else {
-          retVal = _daysUntil.toString() +
-              " days " +
-              _hoursUntil.toString() +
-              " hours " +
-              _minUntil.toString() +
-              " minutes " +
-              s.toString() +
-              " seconds ";
+        if (_daysUntil > 0) {
+          retVal += _daysUntil.toString() + daysTextLong;
+        }
+        if (_hoursUntil > 0) {
+          retVal += _hoursUntil.toString() + hoursTextLong;
+        }
+        if (_minUntil > 0) {
+          retVal += _minUntil.toString() + minutesTextLong;
+        }
+        if (_secUntil > 0) {
+          retVal += s + secondsTextLong;
         }
       }
-    } else if (_hoursUntil > 0) {
-      if (showLabel == false) {
-        retVal = _hoursUntil.toString() +
-            " : " +
-            _minUntil.toString() +
-            " : " +
-            s.toString();
-      } else {
-        if (longDateName == false) {
-          retVal = _hoursUntil.toString() +
-              " h " +
-              _minUntil.toString() +
-              " m " +
-              s.toString() +
-              " s ";
-        } else {
-          retVal = _hoursUntil.toString() +
-              " hours " +
-              _minUntil.toString() +
-              " minutes " +
-              s.toString() +
-              " seconds ";
-        }
-      }
-    } else if (_minUntil > 0) {
-      if (showLabel == false) {
-        retVal = _minUntil.toString() + " : " + s.toString();
-      } else {
-        if (longDateName == false) {
-          retVal = _minUntil.toString() + " m " + s.toString() + " s ";
-        } else {
-          retVal =
-              _minUntil.toString() + " minutes " + s.toString() + " seconds ";
-        }
-      }
-    } else if (_secUntil > 0) {
-      if (showLabel == false) {
-        retVal = s.toString();
-      } else {
-        if (longDateName == false) {
-          retVal = s.toString() + " s ";
-        } else {
-          retVal = s.toString() + " seconds ";
-        }
-      }
-    } else {
+    }
+    if(_secUntil<1){
       retVal = finishedText;
     }
     return retVal;
