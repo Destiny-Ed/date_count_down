@@ -12,3 +12,7 @@
 * Change timer text color
 * Realtime count down
 * You can now remove and add day, hour and minutes label
+
+## [2.1.0] - Feb 15 2022
+
+* Add custom label with default value

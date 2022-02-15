@@ -19,6 +19,7 @@ To use this package : *add the dependency to your [pubspec.yaml] file
 ## Add to your dart file
 
 ```dart
+
 import 'package:date_count_down/date_count_down.dart';
 import 'package:flutter/material.dart';
 
@@ -69,6 +70,20 @@ class _MyHomePageState extends State<MyHomePage> {
               showLabel: true,
               longDateName: true,
               style: TextStyle(color: Colors.blue),
+            ),
+            Text(
+              'Countdown Timer with custom label:',
+            ),
+            CountDownText(
+              due: DateTime.parse("2050-01-01 00:00:00"),
+              finishedText: "Done",
+              showLabel: true,
+              longDateName: true,
+              daysTextLong: " DAYS ",
+              hoursTextLong: " HOURS ",
+              minutesTextLong: " MINUTES ",
+              secondsTextLong: " SECONDS ",
+              style: TextStyle(color: Colors.blue),
             )
           ],
         ),
@@ -77,17 +92,22 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
+
 ```
+
+## Acknowledgement
+
+Special thanks to [ekhiw](https://github.com/ekhiw) to adding the custom values to the package
 
 ## Follow me
 
 [Github] (https://github.com/Destiny-Ed)
 
 [Twitter] (https://twitter.com/DestinyEd8)
-  
-[Facebook] (https://web.facebook.com/destiny.dike...)
 
-[Linkedin] (linkedin.com/in/destiny-ed-719815148)
+[Linkedin] (linkedin.com/in/destiny-ed)
+
+[Youtube] (https://www.youtube.com/channel/UCFEtn_pdpZPT9vMxovgTp0A)
 
 
 
