@@ -1,6 +1,7 @@
 # flutter_countDown
 
 A new Flutter package that provide already made Count down functionality
+![Screenshoot](/screenshoot/sc1.png?raw=true "Screenshoot")
 
 ## Usage
 

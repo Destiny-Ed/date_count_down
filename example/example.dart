@@ -49,6 +49,20 @@ class _MyHomePageState extends State<MyHomePage> {
               showLabel: true,
               longDateName: true,
               style: TextStyle(color: Colors.blue),
+            ),
+            Text(
+              'Countdown Timer with custom label:',
+            ),
+            CountDownText(
+              due: DateTime.parse("2050-01-01 00:00:00"),
+              finishedText: "Done",
+              showLabel: true,
+              longDateName: true,
+              daysTextLong: " DAYS ",
+              hoursTextLong: " HOURS ",
+              minutesTextLong: " MINUTES ",
+              secondsTextLong: " SECONDS ",
+              style: TextStyle(color: Colors.blue),
             )
           ],
         ),
