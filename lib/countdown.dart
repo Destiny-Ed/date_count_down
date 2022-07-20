@@ -1,15 +1,20 @@
 class CountDown {
-  String timeLeft(DateTime due,
-      String finishedText,
-      String daysTextLong,
-      String hoursTextLong,
-      String minutesTextLong,
-      String secondsTextLong,
-      String daysTextShort,
-      String hoursTextShort,
-      String minutesTextShort,
-      String secondsTextShort,
-      {bool? longDateName, bool? showLabel}) {
+  String timeLeft(
+    DateTime due,
+    String finishedText,
+    String daysTextLong,
+    String hoursTextLong,
+    String minutesTextLong,
+    String secondsTextLong,
+    String daysTextShort,
+    String hoursTextShort,
+    String minutesTextShort,
+    String secondsTextShort, {
+    bool? longDateName,
+    bool? showLabel,
+    bool collapsing = false,
+    String endingText = ' left',
+  }) {
     String retVal = "";
 
     Duration _timeUntilDue = due.difference(DateTime.now());
@@ -26,7 +31,7 @@ class CountDown {
         : _secUntil.toString().substring(_secUntil.toString().length - 2);
 
     //Check whether to return longDateName date name or not
-    if (showLabel == false){
+    if (showLabel == false) {
       if (_daysUntil > 0) {
         retVal += _daysUntil.toString() + " : ";
       }
@@ -39,37 +44,40 @@ class CountDown {
       if (_secUntil > 0) {
         retVal += s;
       }
-    }else {
+    } else {
       if (longDateName == false) {
         if (_daysUntil > 0) {
           retVal += _daysUntil.toString() + daysTextShort;
         }
-        if (_hoursUntil > 0) {
+        if (_hoursUntil > 0 && (!collapsing || _daysUntil <= 0)) {
           retVal += _hoursUntil.toString() + hoursTextShort;
         }
-        if (_minUntil > 0) {
+        if (_minUntil > 0 && (!collapsing || _hoursUntil <= 0)) {
           retVal += _minUntil.toString() + minutesTextShort;
         }
-        if (_secUntil > 0) {
+        if (_secUntil > 0 && (!collapsing || _minUntil <= 0)) {
           retVal += s + secondsTextShort;
         }
       } else {
         if (_daysUntil > 0) {
           retVal += _daysUntil.toString() + daysTextLong;
         }
-        if (_hoursUntil > 0) {
+        if (_hoursUntil > 0 && (!collapsing || _daysUntil <= 0)) {
           retVal += _hoursUntil.toString() + hoursTextLong;
         }
-        if (_minUntil > 0) {
+        if (_minUntil > 0 && (!collapsing || _hoursUntil <= 0)) {
           retVal += _minUntil.toString() + minutesTextLong;
         }
-        if (_secUntil > 0) {
+        if (_secUntil > 0 && (!collapsing || _minUntil <= 0)) {
           retVal += s + secondsTextLong;
         }
       }
     }
-    if(_secUntil<1){
+    if (_secUntil < 1) {
       retVal = finishedText;
+    }
+    else if (collapsing) {
+      retVal += endingText;
     }
     return retVal;
   }
