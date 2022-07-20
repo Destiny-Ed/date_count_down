@@ -73,7 +73,7 @@ class CountDown {
         }
       }
     }
-    if (_secUntil < 1) {
+    if (_timeUntilDue.inSeconds < 1) {
       retVal = finishedText;
     }
     else if (collapsing) {
