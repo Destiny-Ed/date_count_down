@@ -16,3 +16,8 @@
 ## [2.1.0] - Feb 15 2022
 
 * Add custom label with default value
+
+## [3.0.0] - Aug 14 2022
+
+* Fixed timer showing finished text at 00 seconds.
+* Display time ago with collapsing flag
