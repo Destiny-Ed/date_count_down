@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class CountDown {
   String timeLeft(
     DateTime due,
@@ -14,6 +16,7 @@ class CountDown {
     bool? showLabel,
     bool collapsing = false,
     String endingText = ' left',
+    VoidCallback? onFinished, // New callback parameter
   }) {
     String retVal = "";
 
@@ -24,13 +27,11 @@ class CountDown {
     int _minUntil =
         _timeUntilDue.inMinutes - (_daysUntil * 24 * 60) - (_hoursUntil * 60);
     int _secUntil = _timeUntilDue.inSeconds - (_minUntil * 60);
-    // String s = _secUntil.toString().substring(_secUntil.toString().length - 2);
-    // //Fixed Invalid Range Value
     String s = _secUntil.toString().length <= 2
         ? _secUntil.toString()
         : _secUntil.toString().substring(_secUntil.toString().length - 2);
 
-    //Check whether to return longDateName date name or not
+    // Check whether to return longDateName date name or not
     if (showLabel == false) {
       if (_daysUntil > 0) {
         retVal += _daysUntil.toString() + " : ";
@@ -75,8 +76,10 @@ class CountDown {
     }
     if (_timeUntilDue.inSeconds < 1) {
       retVal = finishedText;
-    }
-    else if (collapsing) {
+      if (onFinished != null) {
+        onFinished(); // Invoke the callback when the countdown is due
+      }
+    } else if (collapsing) {
       retVal += endingText;
     }
     return retVal;

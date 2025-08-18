@@ -1,4 +1,3 @@
-
 import 'package:date_count_down/date_count_down.dart';
 import 'package:flutter/material.dart';
 
@@ -49,6 +48,10 @@ class _MyHomePageState extends State<MyHomePage> {
               showLabel: true,
               longDateName: true,
               style: TextStyle(color: Colors.blue),
+              onFinished: () {
+                print("Countdown has finished!");
+                // Add your callback logic here
+              },
             ),
             Text(
               'Countdown Timer with custom label:',
@@ -63,6 +66,10 @@ class _MyHomePageState extends State<MyHomePage> {
               minutesTextLong: " MINUTES ",
               secondsTextLong: " SECONDS ",
               style: TextStyle(color: Colors.blue),
+              onFinished: () {
+                print("Countdown has finished!");
+                // Add your callback logic here
+              },
             )
           ],
         ),

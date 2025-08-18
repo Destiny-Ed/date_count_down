@@ -21,3 +21,7 @@
 
 * Fixed timer showing finished text at 00 seconds.
 * Display time ago with collapsing flag
+
+## [4.0.0] - Aug 18 2025
+
+* Return a Callback when date is due.
