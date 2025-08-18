@@ -54,10 +54,17 @@ class _CountDownTextState extends State<CountDownText> {
 
   @override
   void initState() {
-    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      setState(() {});
-    });
     super.initState();
+    // Only start the timer if the countdown is not due
+    if (widget.due!.difference(DateTime.now()).inSeconds >= 1) {
+      timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+        if (widget.due!.difference(DateTime.now()).inSeconds < 1) {
+          // Stop the timer when the countdown is due
+          timer.cancel();
+        }
+        setState(() {});
+      });
+    }
   }
 
   @override
