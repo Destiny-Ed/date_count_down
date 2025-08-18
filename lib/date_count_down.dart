@@ -24,7 +24,8 @@ class CountDownText extends StatefulWidget {
     this.hoursTextShort = " h ",
     this.minutesTextShort = " m ",
     this.secondsTextShort = " s ",
-    this.endingText = 'left',
+    this.endingText = ' left',
+    this.onFinished, // New callback parameter
   }) : super(key: key);
 
   final DateTime? due;
@@ -40,12 +41,9 @@ class CountDownText extends StatefulWidget {
   final String hoursTextShort;
   final String minutesTextShort;
   final String secondsTextShort;
-
-  /// Makes text to show only the biggest time unit. Starting from days left, then hours etc...
   final bool collapsing;
-
-  /// Shows in the end of the text when its collapsing
   final String endingText;
+  final VoidCallback? onFinished; // New callback property
 
   @override
   _CountDownTextState createState() => _CountDownTextState();
@@ -64,7 +62,7 @@ class _CountDownTextState extends State<CountDownText> {
 
   @override
   void dispose() {
-    timer!.cancel();
+    timer?.cancel();
     super.dispose();
   }
 
@@ -86,6 +84,7 @@ class _CountDownTextState extends State<CountDownText> {
         showLabel: widget.showLabel,
         collapsing: widget.collapsing,
         endingText: widget.endingText,
+        onFinished: widget.onFinished, // Pass the callback to timeLeft
       ),
       style: widget.style,
     );
